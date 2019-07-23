@@ -1,0 +1,9 @@
+language: minimal
+dist: bionic
+install: echo "skip install step"
+#deploy:
+#- provider: script
+#  skip_cleanup: true
+#  script: ./get_latest_functionbeat.sh
+#  on:
+#    branch: master
