@@ -1,0 +1,13 @@
+
+.mdl-layout--fixed-header>.mdl-layout__header {
+    z-index: 6;
+}
+.has-drawer  .mdl-layout__drawer {
+    padding-top: 64px;
+}
+
+.mdl-layout--fixed-drawer:not(.is-small-screen)>.mdl-layout__header {
+    padding-left: 240px;
+    margin-left: 0;
+    width: 100%;
+}
