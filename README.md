@@ -1,10 +1,8 @@
-#ChessWithTony Site Content
+# ChessWithTony Site Content
 
-##Running Locally
+## Running Locally
 
-``
-git checkout https://github.com/J3tto/chesswithtony.git
+
+`git checkout https://github.com/J3tto/chesswithtony.git
 cd chesswithtony
-yarn start
-
-``
+yarn start`
