@@ -5,28 +5,28 @@
  * See: https://www.gatsbyjs.org/docs/use-static-query/
  */
 
-import React from "react"
-import PropTypes from "prop-types"
-import { useStaticQuery, graphql } from "gatsby"
-import Helmet from "react-helmet"
-import { ThemeProvider } from "@material-ui/styles"
-import CssBaseline from "@material-ui/core/CssBaseline"
+import React from 'react';
+import PropTypes from 'prop-types';
+import { useStaticQuery, graphql } from 'gatsby';
+import Helmet from 'react-helmet';
+import { ThemeProvider } from '@material-ui/styles';
+import CssBaseline from '@material-ui/core/CssBaseline';
 
-import theme from "./theme"
-import Header from "./header"
-import Menu from "./menu"
-import { makeStyles, useTheme } from "@material-ui/core"
+import theme from './theme';
+import Header from './header';
+import Menu from './menu';
+import { makeStyles, useTheme } from '@material-ui/core';
 
 const useStyles = makeStyles(theme => ({
   root: {
-    display: "flex",
+    display: 'flex',
   },
   toolbar: theme.mixins.toolbar,
   content: {
     flexGrow: 1,
     padding: theme.spacing(3),
   },
-}))
+}));
 
 const Layout = ({ children }) => {
   const data = useStaticQuery(graphql`
@@ -37,14 +37,14 @@ const Layout = ({ children }) => {
         }
       }
     }
-  `)
-  const drawerWidth = 240
-  const classes = useStyles()
-  const theme = useTheme()
-  const [mobileOpen, setMobileOpen] = React.useState(false)
+  `);
+  const drawerWidth = 240;
+  const classes = useStyles();
+  const theme = useTheme();
+  const [mobileOpen, setMobileOpen] = React.useState(false);
 
   function handleDrawerToggle() {
-    setMobileOpen(!mobileOpen)
+    setMobileOpen(!mobileOpen);
   }
 
   return (
@@ -81,11 +81,11 @@ const Layout = ({ children }) => {
         </div>
       </ThemeProvider>
     </>
-  )
-}
+  );
+};
 
 Layout.propTypes = {
   children: PropTypes.node.isRequired,
-}
+};
 
-export default Layout
+export default Layout;

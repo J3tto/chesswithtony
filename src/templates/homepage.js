@@ -1,20 +1,20 @@
-import React from "react"
-import { graphql } from "gatsby"
-import SEO from "../components/seo"
-import Layout from "../components/layout"
+import React from 'react';
+import { graphql } from 'gatsby';
+import SEO from '../components/seo';
+import Layout from '../components/layout';
 
 export default function Template({
   data, // this prop will be injected by the GraphQL query below.
 }) {
-  const { markdownRemark } = data // data.markdownRemark holds our post data
-  const { frontmatter, html } = markdownRemark
+  const { markdownRemark } = data; // data.markdownRemark holds our post data
+  const { frontmatter, html } = markdownRemark;
   return (
     <Layout header={frontmatter.title}>
       <SEO title={frontmatter.title} />
       <h2>{frontmatter.date}</h2>
       <div dangerouslySetInnerHTML={{ __html: html }} />
     </Layout>
-  )
+  );
 }
 export const pageQuery = graphql`
   query($path: String!) {
@@ -27,4 +27,4 @@ export const pageQuery = graphql`
       }
     }
   }
-`
+`;
