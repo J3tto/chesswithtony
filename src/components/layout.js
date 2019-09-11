@@ -9,12 +9,24 @@ import React from "react"
 import PropTypes from "prop-types"
 import { useStaticQuery, graphql } from "gatsby"
 import Helmet from "react-helmet"
-import { ThemeProvider } from '@material-ui/styles';
-import CssBaseline from '@material-ui/core/CssBaseline';
+import { ThemeProvider } from "@material-ui/styles"
+import CssBaseline from "@material-ui/core/CssBaseline"
 
-import theme from './theme';
+import theme from "./theme"
 import Header from "./header"
-//import "./layout.css"
+import Menu from "./menu"
+import { makeStyles, useTheme } from "@material-ui/core"
+
+const useStyles = makeStyles(theme => ({
+  root: {
+    display: "flex",
+  },
+  toolbar: theme.mixins.toolbar,
+  content: {
+    flexGrow: 1,
+    padding: theme.spacing(3),
+  },
+}))
 
 const Layout = ({ children }) => {
   const data = useStaticQuery(graphql`
@@ -26,6 +38,14 @@ const Layout = ({ children }) => {
       }
     }
   `)
+  const drawerWidth = 240
+  const classes = useStyles()
+  const theme = useTheme()
+  const [mobileOpen, setMobileOpen] = React.useState(false)
+
+  function handleDrawerToggle() {
+    setMobileOpen(!mobileOpen)
+  }
 
   return (
     <>
@@ -40,19 +60,22 @@ const Layout = ({ children }) => {
         />
       </Helmet>
       <ThemeProvider theme={theme}>
-        {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
-        <CssBaseline />
+        <div className={classes.root}>
+          {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
+          <CssBaseline />
 
-        <Header siteTitle={data.site.siteMetadata.title} />
-        <div
-          style={{
-            margin: `0 auto`,
-            maxWidth: 960,
-            padding: `0px 1.0875rem 1.45rem`,
-            paddingTop: 0,
-          }}
-        >
-          <main>{children}</main>
+          <Header
+            siteTitle={data.site.siteMetadata.title}
+            handleDrawerToggle={handleDrawerToggle}
+          />
+          <Menu
+            mobileOpen={mobileOpen}
+            handleDrawerToggle={handleDrawerToggle}
+          />
+          <main className={classes.content}>
+            <div className={classes.toolbar} />
+            {children}
+          </main>
           <footer>
             © {new Date().getFullYear()}, Built by
             {` `}

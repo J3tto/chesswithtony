@@ -4,9 +4,7 @@
  * See: https://www.gatsbyjs.org/docs/node-apis/
  */
 
-// You can delete this file if you're not using it
-
-const path = require(`path`);
+const path = require(`path`)
 exports.createPages = async ({ actions, graphql, reporter }) => {
   const { createPage } = actions
   const result = await graphql(`
@@ -32,7 +30,9 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
     return
   }
   result.data.allMarkdownRemark.edges.forEach(({ node }) => {
-    const template = path.resolve(`src/templates/${node.frontmatter.template}.js`);
+    const template = path.resolve(
+      `src/templates/${node.frontmatter.template}.js`
+    )
     createPage({
       path: node.frontmatter.path,
       component: template,
