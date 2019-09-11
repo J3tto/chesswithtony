@@ -37,7 +37,7 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
-const Menu = ({ mobileOpen, handleDrawerToggle }) => {
+const Menu = ({ open, toggle }) => {
   const classes = useStyles()
   const theme = useTheme()
 
@@ -49,8 +49,8 @@ const Menu = ({ mobileOpen, handleDrawerToggle }) => {
           //container={container}
           variant="temporary"
           anchor={theme.direction === "rtl" ? "right" : "left"}
-          open={mobileOpen}
-          onClose={handleDrawerToggle}
+          open={open}
+          onClose={toggle}
           classes={{
             paper: classes.drawerPaper,
           }}

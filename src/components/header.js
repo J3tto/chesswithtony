@@ -27,7 +27,7 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
-const Header = ({ siteTitle, handleDrawerToggle }) => {
+const Header = ({ siteTitle, menuToggle }) => {
   const classes = useStyles()
   return (
     <AppBar position="fixed" className={classes.appBar}>
@@ -36,7 +36,7 @@ const Header = ({ siteTitle, handleDrawerToggle }) => {
           color="inherit"
           aria-label="open drawer"
           edge="start"
-          onClick={handleDrawerToggle}
+          onClick={menuToggle}
           className={classes.menuButton}
         >
           <MenuIcon />

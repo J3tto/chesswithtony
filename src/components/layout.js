@@ -66,12 +66,9 @@ const Layout = ({ children }) => {
 
           <Header
             siteTitle={data.site.siteMetadata.title}
-            handleDrawerToggle={handleDrawerToggle}
+            menuToggle={handleDrawerToggle}
           />
-          <Menu
-            mobileOpen={mobileOpen}
-            handleDrawerToggle={handleDrawerToggle}
-          />
+          <Menu open={mobileOpen} toggle={handleDrawerToggle} />
           <main className={classes.content}>
             <div className={classes.toolbar} />
             {children}
