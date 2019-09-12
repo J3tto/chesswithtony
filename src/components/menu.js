@@ -11,15 +11,9 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import Typography from '@material-ui/core/Typography';
 
-const drawerWidth = 240;
+const drawerWidth = 280;
 
 const useStyles = makeStyles(theme => ({
-  drawer: {
-    // [theme.breakpoints.up('sm')]: {
-    //   width: drawerWidth,
-    //   flexShrink: 0,
-    // },
-  },
   menuButton: {
     marginRight: theme.spacing(2),
     [theme.breakpoints.up('sm')]: {
@@ -74,9 +68,8 @@ const Menu = ({ open, toggle }) => {
   `);
   console.log(data);
   return (
-    <nav className={classes.drawer} aria-label="mailbox folders">
+    <nav aria-label="mailbox folders">
       <Drawer
-        //container={container}
         variant="temporary"
         anchor={theme.direction === 'rtl' ? 'right' : 'left'}
         open={open}
@@ -92,7 +85,7 @@ const Menu = ({ open, toggle }) => {
           <div className={classes.flexContainer}>
             <Divider />
             <List>
-              {data.allMarkdownRemark.edges.map((page, index) => (
+              {data.allMarkdownRemark.edges.map(page => (
                 <ListItem
                   button
                   component={Link}

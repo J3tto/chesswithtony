@@ -1,20 +1,14 @@
-/**
- * Layout component that queries for data
- * with Gatsby's useStaticQuery component
- *
- * See: https://www.gatsbyjs.org/docs/use-static-query/
- */
-
 import React from 'react';
 import PropTypes from 'prop-types';
-import { useStaticQuery, graphql } from 'gatsby';
+import { graphql, useStaticQuery } from 'gatsby';
 import Helmet from 'react-helmet';
 import { ThemeProvider } from '@material-ui/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 
 import Header from './header';
 import Menu from './menu';
-import { makeStyles, useTheme } from '@material-ui/core';
+import Theme from './theme';
+import { makeStyles } from '@material-ui/core';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -37,9 +31,8 @@ const Layout = ({ children }) => {
       }
     }
   `);
-  const drawerWidth = 240;
+
   const classes = useStyles();
-  const theme = useTheme();
   const [mobileOpen, setMobileOpen] = React.useState(false);
 
   function handleDrawerToggle() {
@@ -62,11 +55,9 @@ const Layout = ({ children }) => {
           href="https://fonts.googleapis.com/icon?family=Material+Icons"
         />
       </Helmet>
-      <ThemeProvider theme={theme}>
+      <ThemeProvider theme={Theme}>
         <div className={classes.root}>
-          {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
           <CssBaseline />
-
           <Header
             siteTitle={data.site.siteMetadata.title}
             menuToggle={handleDrawerToggle}
