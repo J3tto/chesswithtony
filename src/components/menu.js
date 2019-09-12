@@ -1,29 +1,24 @@
-import { Link } from 'gatsby';
+import { graphql, Link, useStaticQuery } from 'gatsby';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Divider from '@material-ui/core/Divider';
 import Drawer from '@material-ui/core/Drawer';
-import Hidden from '@material-ui/core/Hidden';
-import IconButton from '@material-ui/core/IconButton';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
+import Icon from '@material-ui/core/Icon';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import MailIcon from '@material-ui/icons/Mail';
-import MenuIcon from '@material-ui/icons/Menu';
-import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 
 const drawerWidth = 240;
 
 const useStyles = makeStyles(theme => ({
   drawer: {
-    [theme.breakpoints.up('sm')]: {
-      width: drawerWidth,
-      flexShrink: 0,
-    },
+    // [theme.breakpoints.up('sm')]: {
+    //   width: drawerWidth,
+    //   flexShrink: 0,
+    // },
   },
   menuButton: {
     marginRight: theme.spacing(2),
@@ -31,99 +26,101 @@ const useStyles = makeStyles(theme => ({
       display: 'none',
     },
   },
-  toolbar: theme.mixins.toolbar,
   drawerPaper: {
     width: drawerWidth,
+  },
+  growContainer: {
+    position: 'relative',
+    width: '100%',
+    height: '100%',
+    marginTop: theme.mixins.toolbar.minHeight,
+  },
+  flexContainer: {
+    display: 'flex',
+    flexDirection: 'column',
+    height: '100%',
+  },
+  flex: {
+    flex: '1',
+  },
+  footer: {
+    marginBottom: theme.spacing(2),
   },
 }));
 
 const Menu = ({ open, toggle }) => {
   const classes = useStyles();
   const theme = useTheme();
-
+  const data = useStaticQuery(graphql`
+    query MainMenuQuery {
+      allMarkdownRemark(
+        filter: { frontmatter: { menu: { eq: "main" } } }
+        sort: { order: ASC, fields: frontmatter___order }
+      ) {
+        edges {
+          node {
+            id
+            frontmatter {
+              menu
+              order
+              title
+              path
+              menu_icon
+            }
+          }
+        }
+      }
+    }
+  `);
+  console.log(data);
   return (
     <nav className={classes.drawer} aria-label="mailbox folders">
-      {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
-      <Hidden smUp implementation="css">
-        <Drawer
-          //container={container}
-          variant="temporary"
-          anchor={theme.direction === 'rtl' ? 'right' : 'left'}
-          open={open}
-          onClose={toggle}
-          classes={{
-            paper: classes.drawerPaper,
-          }}
-          ModalProps={{
-            keepMounted: true, // Better open performance on mobile.
-          }}
-        >
-          <div>
-            <div className={classes.toolbar} />
+      <Drawer
+        //container={container}
+        variant="temporary"
+        anchor={theme.direction === 'rtl' ? 'right' : 'left'}
+        open={open}
+        onClose={toggle}
+        classes={{
+          paper: classes.drawerPaper,
+        }}
+        ModalProps={{
+          keepMounted: true, // Better open performance on mobile.
+        }}
+      >
+        <div className={classes.growContainer}>
+          <div className={classes.flexContainer}>
             <Divider />
             <List>
-              {['Inbox', 'Starred', 'Send email', 'Drafts'].map(
-                (text, index) => (
-                  <ListItem button key={text}>
-                    <ListItemIcon>
-                      {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                    </ListItemIcon>
-                    <ListItemText primary={text} />
-                  </ListItem>
-                )
-              )}
-            </List>
-            <Divider />
-            <List>
-              {['All mail', 'Trash', 'Spam'].map((text, index) => (
-                <ListItem button key={text}>
+              {data.allMarkdownRemark.edges.map((page, index) => (
+                <ListItem
+                  button
+                  component={Link}
+                  to={page.node.frontmatter.path}
+                  key={page.node.frontmatter.title}
+                  divider
+                >
                   <ListItemIcon>
-                    {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                    <Icon>{page.node.frontmatter.menu_icon || 'help'}</Icon>
                   </ListItemIcon>
-                  <ListItemText primary={text} />
+                  <ListItemText primary={page.node.frontmatter.title} />
                 </ListItem>
               ))}
             </List>
+            <div className={classes.flex} />
+            <Typography
+              variant="caption"
+              display="block"
+              align="center"
+              className={classes.footer}
+            >
+              © {new Date().getFullYear()}, Built by
+              {` `}
+              <a href="https://github.com/J3tto">j3tto</a>
+            </Typography>
           </div>
-        </Drawer>
-      </Hidden>
-      <Hidden xsDown implementation="css">
-        <Drawer
-          classes={{
-            paper: classes.drawerPaper,
-          }}
-          variant="permanent"
-          open
-        >
-          <div>
-            <div className={classes.toolbar} />
-            <Divider />
-            <List>
-              {['Inbox', 'Starred', 'Send email', 'Drafts'].map(
-                (text, index) => (
-                  <ListItem button key={text}>
-                    <ListItemIcon>
-                      {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                    </ListItemIcon>
-                    <ListItemText primary={text} />
-                  </ListItem>
-                )
-              )}
-            </List>
-            <Divider />
-            <List>
-              {['All mail', 'Trash', 'Spam'].map((text, index) => (
-                <ListItem button key={text}>
-                  <ListItemIcon>
-                    {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                  </ListItemIcon>
-                  <ListItemText primary={text} />
-                </ListItem>
-              ))}
-            </List>
-          </div>
-        </Drawer>
-      </Hidden>
+        </div>
+      </Drawer>
     </nav>
   );
 };

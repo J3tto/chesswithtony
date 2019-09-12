@@ -21,9 +21,9 @@ const useStyles = makeStyles(theme => ({
   },
   menuButton: {
     marginRight: theme.spacing(2),
-    [theme.breakpoints.up('sm')]: {
-      display: 'none',
-    },
+    // [theme.breakpoints.up('sm')]: {
+    //   display: 'none',
+    // },
   },
 }));
 
@@ -41,10 +41,6 @@ const Header = ({ siteTitle, menuToggle }) => {
         >
           <MenuIcon />
         </IconButton>
-        <Typography variant="h6" className={classes.title}>
-          {siteTitle}
-        </Typography>
-        <Button color="inherit">HERE</Button>
       </Toolbar>
     </AppBar>
   );

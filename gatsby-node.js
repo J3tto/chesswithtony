@@ -18,12 +18,14 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
             frontmatter {
               path
               template
+              order
             }
           }
         }
       }
     }
   `);
+
   // Handle errors
   if (result.errors) {
     reporter.panicOnBuild(`Error while running GraphQL query.`);
