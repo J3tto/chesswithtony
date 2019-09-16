@@ -4,11 +4,12 @@ import { graphql, useStaticQuery } from 'gatsby';
 import Helmet from 'react-helmet';
 import { ThemeProvider } from '@material-ui/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
+import { makeStyles } from '@material-ui/core';
 
 import Header from './header';
-import Menu from './menu';
+import MainMenu from './mainmenu';
 import Theme from './theme';
-import { makeStyles } from '@material-ui/core';
+import Consent from './consent';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -34,10 +35,9 @@ const Layout = ({ children }) => {
 
   const classes = useStyles();
   const [mobileOpen, setMobileOpen] = React.useState(false);
-
-  function handleDrawerToggle() {
+  const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
-  }
+  };
 
   return (
     <>
@@ -62,16 +62,17 @@ const Layout = ({ children }) => {
             siteTitle={data.site.siteMetadata.title}
             menuToggle={handleDrawerToggle}
           />
-          <Menu open={mobileOpen} toggle={handleDrawerToggle} />
+          <MainMenu open={mobileOpen} toggle={handleDrawerToggle} />
           <main className={classes.content}>
             <div className={classes.toolbar} />
             {children}
+            <footer>
+              © {new Date().getFullYear()}, Built by
+              {` `}
+              <a href="https://github.com/J3tto">j3tto</a>
+            </footer>
           </main>
-          <footer>
-            © {new Date().getFullYear()}, Built by
-            {` `}
-            <a href="https://github.com/J3tto">j3tto</a>
-          </footer>
+          <Consent />
         </div>
       </ThemeProvider>
     </>

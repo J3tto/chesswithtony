@@ -11,6 +11,9 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import Typography from '@material-ui/core/Typography';
 
+import OtherMenu from './othermenu';
+import { Box } from '@material-ui/core';
+
 const drawerWidth = 280;
 
 const useStyles = makeStyles(theme => ({
@@ -42,10 +45,10 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const Menu = ({ open, toggle }) => {
+const MainMenu = ({ open, toggle }) => {
   const classes = useStyles();
   const theme = useTheme();
-  const data = useStaticQuery(graphql`
+  const mainMenuData = useStaticQuery(graphql`
     query MainMenuQuery {
       allMarkdownRemark(
         filter: { frontmatter: { menu: { eq: "main" } } }
@@ -66,7 +69,28 @@ const Menu = ({ open, toggle }) => {
       }
     }
   `);
-  console.log(data);
+  // const otherMenuData = useStaticQuery(graphql`
+  //   query OtherMenuQuery {
+  //     allMarkdownRemark(
+  //       filter: { frontmatter: { menu: { eq: "other" } } }
+  //       sort: { order: ASC, fields: frontmatter___order }
+  //     ) {
+  //       edges {
+  //         node {
+  //           id
+  //           frontmatter {
+  //             menu
+  //             order
+  //             title
+  //             path
+  //             menu_icon
+  //           }
+  //         }
+  //       }
+  //     }
+  //   }
+  // `);
+
   return (
     <nav aria-label="mailbox folders">
       <Drawer
@@ -85,7 +109,7 @@ const Menu = ({ open, toggle }) => {
           <div className={classes.flexContainer}>
             <Divider />
             <List>
-              {data.allMarkdownRemark.edges.map(page => (
+              {mainMenuData.allMarkdownRemark.edges.map(page => (
                 <ListItem
                   button
                   component={Link}
@@ -101,6 +125,9 @@ const Menu = ({ open, toggle }) => {
               ))}
             </List>
             <div className={classes.flex} />
+
+            <OtherMenu />
+
             <Typography
               variant="caption"
               display="block"
@@ -118,12 +145,12 @@ const Menu = ({ open, toggle }) => {
   );
 };
 
-Menu.propTypes = {
+MainMenu.propTypes = {
   currentPage: PropTypes.string,
 };
 
-Menu.defaultProps = {
+MainMenu.defaultProps = {
   currentPage: ``,
 };
 
-export default Menu;
+export default MainMenu;
