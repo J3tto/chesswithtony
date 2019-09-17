@@ -5,6 +5,7 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
+import {Typography} from "@material-ui/core";
 
 const useStyles = makeStyles(theme => ({
   appBar: {
@@ -30,6 +31,7 @@ const Header = ({ menuToggle }) => {
         >
           <MenuIcon />
         </IconButton>
+        <Typography component="h1" variant="h6">Chess With Tony</Typography>
       </Toolbar>
     </AppBar>
   );

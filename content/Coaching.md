@@ -1,6 +1,7 @@
 ---
 path: '/coaching'
 menu: 'main'
+menu_icon: 'group'
 order: '04'
 template: 'default'
 date: '2019-05-04'

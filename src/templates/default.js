@@ -2,6 +2,7 @@ import React from 'react';
 import { graphql } from 'gatsby';
 import SEO from '../components/seo';
 import Layout from '../components/layout';
+import {Typography} from "@material-ui/core";
 
 export default function Template({
   data, // this prop will be injected by the GraphQL query below.
@@ -11,7 +12,6 @@ export default function Template({
   return (
     <Layout frontmatter={frontmatter}>
       <SEO title={frontmatter.title} />
-      <h2>{frontmatter.date}</h2>
       <div dangerouslySetInnerHTML={{ __html: html }} />
     </Layout>
   );

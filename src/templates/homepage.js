@@ -11,7 +11,6 @@ export default function Template({
   return (
     <Layout frontmatter={frontmatter}>
       <SEO title={frontmatter.title} />
-      <h2>{frontmatter.date}</h2>
       <div dangerouslySetInnerHTML={{ __html: html }} />
     </Layout>
   );
