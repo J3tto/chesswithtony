@@ -4,9 +4,9 @@ node_js:
 
 dist: trusty
 sudo: false
-#deploy:
-#- provider: script
-#  skip_cleanup: true
-#  script: ./get_latest_functionbeat.sh
-#  on:
-#    branch: master
+deploy:
+- provider: script
+  skip_cleanup: true
+  script: yarn run deploy
+  on:
+    branch: master
