@@ -1,6 +1,9 @@
-language: minimal
-dist: bionic
-install: echo "skip install step"
+language: node_js
+node_js:
+  - '10.0'
+
+dist: trusty
+sudo: false
 #deploy:
 #- provider: script
 #  skip_cleanup: true
