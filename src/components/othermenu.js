@@ -2,17 +2,22 @@ import { graphql, Link, useStaticQuery } from 'gatsby';
 import React from 'react';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
-import { Box } from '@material-ui/core';
+import { Box, Icon } from '@material-ui/core';
+import Divider from '@material-ui/core/Divider';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+import ListItemText from '@material-ui/core/ListItemText';
 
 const useStyles = makeStyles(theme => ({}));
 
 const OtherMenu = ({ open, toggle }) => {
   const classes = useStyles();
   const theme = useTheme();
-  const otherMenuData = useStaticQuery(graphql`
-    query OtherMenuQuery {
+  const globalMenuData = useStaticQuery(graphql`
+    query GlobalMenuQuery {
       allMarkdownRemark(
-        filter: { frontmatter: { menu: { eq: "other" } } }
+        filter: { frontmatter: { menu: { eq: "global" } } }
         sort: { order: ASC, fields: frontmatter___order }
       ) {
         edges {
@@ -34,20 +39,22 @@ const OtherMenu = ({ open, toggle }) => {
   return (
     <>
       <Box>
-        {otherMenuData.allMarkdownRemark.edges.map(page => (
-          <Typography variant="caption" display="block" align="center">
-            <Link to={page.node.frontmatter.path}>
-              {page.node.frontmatter.title}
-            </Link>
-          </Typography>
-        ))}
-        <Typography
-          variant="caption"
-          display="block"
-          align="center"
-        >
-          Cookie Settings
-        </Typography>
+        <List dense>
+          {globalMenuData.allMarkdownRemark.edges.map(page => (
+            <ListItem
+              button
+              component={Link}
+              to={page.node.frontmatter.path}
+              key={page.node.frontmatter.title}
+              divider
+            >
+              <ListItemIcon>
+                <Icon>{page.node.frontmatter.menu_icon || 'help'}</Icon>
+              </ListItemIcon>
+              <ListItemText primary={page.node.frontmatter.title} />
+            </ListItem>
+          ))}
+        </List>
       </Box>
     </>
   );

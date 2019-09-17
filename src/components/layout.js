@@ -22,7 +22,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const Layout = ({ children }) => {
+const Layout = ({ frontmatter, children }) => {
   const data = useStaticQuery(graphql`
     query SiteTitleQuery {
       site {
@@ -72,7 +72,7 @@ const Layout = ({ children }) => {
               <a href="https://github.com/J3tto">j3tto</a>
             </footer>
           </main>
-          <Consent />
+          <Consent frontmatter={frontmatter} />
         </div>
       </ThemeProvider>
     </>
@@ -81,6 +81,7 @@ const Layout = ({ children }) => {
 
 Layout.propTypes = {
   children: PropTypes.node.isRequired,
+  frontmatter: PropTypes.object.isRequired,
 };
 
 export default Layout;
