@@ -86,7 +86,6 @@ const Consent = ({ frontmatter }) => {
     );
     setCookieConsentSaveStateOpen(true);
   };
-  console.log(frontmatter.path);
   return (
     <>
       {cookieConsentState.accepted && cookieConsentState.analyticsCookies && (
@@ -118,7 +117,7 @@ const Consent = ({ frontmatter }) => {
             variant="contained"
             color="primary"
             className={classes.button}
-            onClick={allowCookiesAction}
+            onClick={() => allowCookiesAction() }
           >
             Allow
           </Button>

@@ -4,6 +4,7 @@ module.exports = {
     description: `description to go here`,
     author: `j3tto`,
   },
+  pathPrefix: "/chesswithtony",
   plugins: [
     `gatsby-plugin-material-ui`,
     `gatsby-plugin-react-helmet`,
@@ -30,8 +31,8 @@ module.exports = {
         name: `chesswithtony`,
         short_name: `chesswithtony`,
         start_url: `/`,
-        background_color: `#663399`,
-        theme_color: `#663399`,
+        background_color: `#FFFFFF`,
+        theme_color: `#FFFFFF`,
         display: `minimal-ui`,
         icon: `src/images/gatsby-icon.png`, // This path is relative to the root of the site.
       },

@@ -22,10 +22,10 @@
     "prop-types": "^15.7.2",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
-    "react-helmet": "^5.2.1",
-    "react-router": "^5.0.1"
+    "react-helmet": "^5.2.1"
   },
   "devDependencies": {
+    "gh-pages": "^2.1.1",
     "prettier": "^1.18.2"
   },
   "keywords": [
@@ -39,7 +39,7 @@
     "start": "npm run develop",
     "serve": "gatsby serve",
     "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing \"",
-    "deploy": "echo \"DEPLOY NOW!!! \""
+    "deploy": "gatsby build --prefix-paths && gh-pages -d public"
   },
   "repository": {
     "type": "git",

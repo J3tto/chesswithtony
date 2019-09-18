@@ -22,7 +22,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const Layout = ({ frontmatter, children }) => {
+const Layout = ({ frontmatter = {}, children }) => {
   const data = useStaticQuery(graphql`
     query SiteTitleQuery {
       site {
