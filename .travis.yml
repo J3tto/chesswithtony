@@ -4,6 +4,12 @@ node_js:
 
 dist: trusty
 sudo: false
+
+after_success:
+  - git config --global user.name "Travis CI"
+  - git config --global user.email "travis@j3tto.com"
+  - git remote rm origin
+  - git remote add origin https://j3tto:${GH_TOKEN}@github.com:J3tto/chesswithtony.git
 deploy:
 - provider: script
   skip_cleanup: true
