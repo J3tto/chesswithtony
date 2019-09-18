@@ -5,6 +5,9 @@ node_js:
 dist: trusty
 sudo: false
 
+script:
+  - yarn run build
+
 after_success:
   - git config --global user.name "Travis CI"
   - git config --global user.email "travis@j3tto.com"
