@@ -17,7 +17,7 @@ import { green } from '@material-ui/core/colors';
 
 const useStyles = makeStyles(theme => ({
   bottomBar: {
-    backgroundColor: theme.palette.secondary.main,
+    backgroundColor: theme.palette.primary.light,
     color: theme.palette.primary.contrastText,
     position: 'fixed',
     top: 'auto',
