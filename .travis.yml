@@ -7,6 +7,6 @@ sudo: false
 deploy:
 - provider: script
   skip_cleanup: true
-  script: yarn run build deploy
+  script: yarn run deploy
   on:
     branch: master
