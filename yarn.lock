@@ -1074,10 +1074,10 @@
   dependencies:
     core-js "^2.5.7"
 
-"@material-ui/core@^4.4.1":
-  version "4.4.1"
-  resolved "https://registry.yarnpkg.com/@material-ui/core/-/core-4.4.1.tgz#cc9b8e417ced1ab3145fdeda41a6aee657d3524b"
-  integrity sha512-LotIIGv8EDMj6mwXobsMF4WlCe+PtMjrXa34U2B0xFMdZLrNYwdOHFgkAIaE0m/ibMXTobNKWqhc5bhXLxvXoQ==
+"@material-ui/core@^4.4.2":
+  version "4.4.2"
+  resolved "https://registry.yarnpkg.com/@material-ui/core/-/core-4.4.2.tgz#66a9423e533833d2867827e6fdf526adbdceb7c0"
+  integrity sha512-hnZ4SP/hWJ9sUoNMkStz/y/CL2c7j4JpVIB2py3+vpBFU9TgHL3noBk3Fr0gltRvvlYA9ekpiGsGZ2ukk1R7Eg==
   dependencies:
     "@babel/runtime" "^7.4.4"
     "@material-ui/styles" "^4.4.1"
@@ -5345,7 +5345,7 @@ gatsby-cli@^2.7.48:
     ink "^2.3.0"
     ink-spinner "^3.0.1"
 
-gatsby-core-utils@^1.0.8, gatsby-core-utils@^1.0.9:
+gatsby-core-utils@^1.0.9:
   version "1.0.9"
   resolved "https://registry.yarnpkg.com/gatsby-core-utils/-/gatsby-core-utils-1.0.9.tgz#54476c43d50b5f8561b8f0eb5f91a6f94dad4dd3"
   integrity sha512-AA0qrGhon4BXv6/ku1+8l6b9er2TCzgK6iBPwpq1tRXOfJaRUqyZAM3qFOZs/M443YRObooOFNIWrRVcxXCQQw==
