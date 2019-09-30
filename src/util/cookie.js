@@ -16,7 +16,7 @@ const setConsentCookie = (
     marketingCookies,
     dateOfConsent: new Date(),
   };
-  Cookies.set(cookieName, consentCookie, { secure: true });
+  Cookies.set(cookieName, consentCookie, { secure: true, expires: 365 });
   return consentCookie;
 };
 
