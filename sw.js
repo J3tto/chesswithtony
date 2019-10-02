@@ -30,21 +30,21 @@ self.__precacheManifest = [
     "url": "webpack-runtime-27dfe85a9a5f8c8e44fe.js"
   },
   {
-    "url": "commons-eb092a96bc84e47af838.js"
+    "url": "commons-568e53fd5aed6e0fb17b.js"
   },
   {
-    "url": "app-452e969ed54824b62833.js"
+    "url": "app-6813b4c793fc494346e9.js"
   },
   {
     "url": "component---node-modules-gatsby-plugin-offline-app-shell-js-f0ed020b6bf106960bc1.js"
   },
   {
     "url": "offline-plugin-app-shell-fallback/index.html",
-    "revision": "3d0bfa1194dd76aabaf77d0afbab0f0c"
+    "revision": "5805c3c941976fbf4c8c20fdb624473a"
   },
   {
     "url": "page-data/offline-plugin-app-shell-fallback/page-data.json",
-    "revision": "4aa2477961f5daab3653a9fdaf9f9d08"
+    "revision": "3dd314b9b11457d0956b8d584e68e409"
   },
   {
     "url": "manifest.webmanifest",
@@ -76,7 +76,7 @@ const navigationRoute = new NavigationRoute(async ({ event }) => {
   // Check for resources + the app bundle
   // The latter may not exist if the SW is updating to a new version
   const resources = await idbKeyval.get(`resources:${pathname}`)
-  if (!resources || !(await caches.match(`/chesswithtony/app-452e969ed54824b62833.js`))) {
+  if (!resources || !(await caches.match(`/chesswithtony/app-6813b4c793fc494346e9.js`))) {
     return await fetch(event.request)
   }
 
